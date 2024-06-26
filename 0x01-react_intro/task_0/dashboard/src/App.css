@@ -1,0 +1,40 @@
+.App {
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+}
+
+.App-logo {
+  height: 8rem;
+  margin: 1rem;
+}
+
+.App-header {
+  background-color: white;
+  padding: 1rem;
+  border-bottom: 2px solid #e1354b;
+  display: flex;
+  align-items: center;
+}
+
+.App-header h1 {
+  color: #e1354b;
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
+
+.App-body {
+  font-size: 1.2rem;
+  margin: 2rem;
+  height: 70vh;
+  
+}
+
+.App-footer {
+  background-color: white;
+  padding: 1rem;
+  border-top: 2px solid #e1354b;
+  text-align: center; 
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
