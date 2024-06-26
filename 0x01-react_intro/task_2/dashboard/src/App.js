@@ -1,15 +1,9 @@
 import React from 'react';
 import logo from './holberton-logo.png';
-import './App.css';
 import { getFullYear, getFooterCopy } from './utils';
+import './App.css';
 
 function App() {
-  // const [update, setUpdate] = React.useState(false);
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setUpdate(!update);
-  //   }, 2000);
-  // }, [update]);
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +12,12 @@ function App() {
       </header>
       <div className="App-body">
         <p>Login to access the full dashboard</p>
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" name="email" />
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" name="password" />
+        <br></br>
+        <button type="button">OK</button>
       </div>
       <footer className="App-footer">
         <p>Copyright {getFullYear()} - {getFooterCopy(true)}</p>
