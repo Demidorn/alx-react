@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
 .App {
   text-align: left;
   font-family: 'Arial', sans-serif;
@@ -11,7 +17,7 @@
 .App-header {
   background-color: white;
   padding: 1rem;
-  border-bottom: 2px solid #e1354b;
+  border-bottom: 3px solid #e1354b;
   display: flex;
   align-items: center;
 }
@@ -30,12 +36,20 @@
   
 }
 
-.App-body label {
-  display: block;
+.login-form {
   margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  
 }
 
-.App-body input {
+.login-form label {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+} 
+
+.login-form input {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem;
@@ -44,22 +58,17 @@
   max-width: 300px;
 }
 
-.App-body button {
-  background-color: #e1354b;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 1rem;
+.submit-button button {
+border-radius: 4px;
+border-color: rgba(153, 149, 149, 0.452);
+padding: 0.2rem 0.5rem;
 }
 
 .App-footer {
   background-color: white;
   padding: 1rem;
-  border-top: 2px solid #e1354b;
+  border-top: 3px solid #e1354b;
   text-align: center; 
-  position: fixed;
   width: 100%;
   bottom: 0;
 }
