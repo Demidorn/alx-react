@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import debounce from 'lodash/debounce';
+import debounce from "lodash/debounce";
 
 let count = 0;
 
