@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: path.resolve(__dirname, './js/dashboard_main.js'),
+  // entry: path.resolve(__dirname, './js/dashboard_main.js'),
+  entry: './js/dashboard_main.js',
   performance: {
     maxAssetSize: 1000000,
   },
@@ -17,7 +18,9 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        // test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset/resource',
         use: [
           "file-loader",
           {
