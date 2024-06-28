@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/alx-react/static/css/main.230daee2.css",
+    "main.js": "/alx-react/static/js/main.9bf78107.js",
+    "index.html": "/alx-react/index.html",
+    "main.230daee2.css.map": "/alx-react/static/css/main.230daee2.css.map",
+    "main.9bf78107.js.map": "/alx-react/static/js/main.9bf78107.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.230daee2.css",
+    "static/js/main.9bf78107.js"
+  ]
+}
