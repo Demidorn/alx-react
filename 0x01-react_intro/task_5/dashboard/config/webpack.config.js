@@ -37,8 +37,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             // template: './dist/index.html',
-            template: path.resolve(__dirname, '../dist/index.html'), // Adjust path according to your config folder
-            filename: 'index.html',
+            // template: path.resolve(__dirname, '../dist/index.html'), // Adjust path according to your config folder
+            // filename: 'index.html',
+            template: './public/index.html',
         }),
     ],
     devServer: {
