@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/App/App.js', // Adjust entry point if necessary
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,  // To clean the output directory before emit
+        path: path.resolve(__dirname, '../dist'),
+        clean: true,
     },
     module: {
         rules: [
@@ -16,55 +16,36 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                }
+                },
             },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65,
-                            },
-                            optipng: {
-                                enabled: true,
-                            },
-                            pngquant: {
-                                quality: [0.65, 0.90],
-                                speed: 4,
-                            },
-                            gifsicle: {
-                                interlaced: false,
-                            },
-                            webp: {
-                                quality: 75,
-                            },
-                        },
-                    },
-                ],
+                test: /\.(png|jpe?g|gif|ico)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[name][ext]',
+                },
             },
         ],
     },
+    resolve: {
+        extensions: ['.js', '.jsx'], // Add this to resolve .js and .jsx files
+    },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './dist/index.html',
+            // template: './dist/index.html',
+            template: path.resolve(__dirname, '../dist/index.html'), // Adjust path according to your config folder
             filename: 'index.html',
         }),
     ],
     devServer: {
-        static: path.resolve(__dirname, 'dist'),
+        static: path.resolve(__dirname, '../dist'),
         compress: true,
         port: 8564,
         hot: true,
     },
-    devtool: 'inline-source-map'
+    devtool: 'inline-source-map',
 };
