@@ -1,5 +1,6 @@
 #count {
-  display: inline;
+  display: flex;
+  justify-content: flex-end;
   font-weight: bold;
 }
 

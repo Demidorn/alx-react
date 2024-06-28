@@ -1,21 +1,13 @@
 {
   "name": "task_2",
   "version": "1.0.0",
-  "description": "Adding CSS and Images webpack",
-  "main": "index.js",
+  "description": "",
+  "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
     "build": "webpack"
   },
-  "keywords": [
-    "asset_compilation",
-    "entry_points",
-    "javascript",
-    "loaders",
-    "output",
-    "webpack_plugins"
-  ],
+  "keywords": [],
   "author": "Demidorn",
   "license": "ISC",
   "devDependencies": {
@@ -28,7 +20,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "jquery": "^3.7.1",
-    "lodash": "^4.17.21"
+    "jquery": "^3.7.1"
   }
 }
