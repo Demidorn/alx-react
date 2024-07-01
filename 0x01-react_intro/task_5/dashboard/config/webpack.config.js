@@ -33,6 +33,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'], // Add this to resolve .js and .jsx files
+        alias: {
+            'react': path.resolve(__dirname, 'node_modules/react'),
+            'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+          }
     },
     plugins: [
         new HtmlWebpackPlugin({
