@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
-import Notifications from './Notifications';
+import App from './App/App';
+import Notifications from './Notifications/Notifications';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

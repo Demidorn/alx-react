@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+.App {
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+}
+
+
+.App-body {
+  font-size: 1.2rem;
+  margin: 2rem;
+  height: 70vh;
+  
+}
+
