@@ -17,7 +17,7 @@ class NotificationItem extends React.PureComponent {
           </li>
         ) : null}
         {html ? <li 
-        className={css(styles.urgent)}
+        className={css(styles.notification, styles.urgent)}
         onClick={() => markAsRead(id)}
         data-urgent
         dangerouslySetInnerHTML={{ __html: html }}
@@ -46,6 +46,12 @@ NotificationItem.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+  notification: {
+    width: "100%",
+    borderBottom: "1px solid black",
+    fontSize: "20px",
+    padding: "10px 8px",
+  },
   default: {
     color: "blue",
   },
