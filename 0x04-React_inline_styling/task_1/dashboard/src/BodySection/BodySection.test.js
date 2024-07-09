@@ -1,6 +1,14 @@
 import React from "react";
 import BodySection from "./BodySection";
 import { shallow } from "enzyme";
+import { StyleSheetTestUtils } from "aphrodite";
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
 
 describe("BodySection tests", () => {
   it("should render correctly", () => {

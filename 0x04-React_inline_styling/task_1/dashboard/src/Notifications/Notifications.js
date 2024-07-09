@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   "[data-urgent]": {
-    color
+    color: 'red',
   },
   
   '[data-notification-type="urgent"]': {
