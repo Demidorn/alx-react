@@ -50,7 +50,7 @@ class Notifications extends Component {
               <img src={closeBtn} alt="X" width="10px" />
             </button>
             {this.props.listNotifications.length != 0 ? <p>Here is the list of notifications</p> : null}
-            <ul>
+            <ul  className={css(styles.ul)}>
               {this.props.listNotifications.length == 0 ? <NotificationItem type="default" value="No new notification for now" /> : null}
               {this.props.listNotifications.map((val, idx) => {
                 return <NotificationItem type={val.type} value={val.value} html={val.html} key={val.id} markAsRead={this.markAsRead} id={val.id} />;
@@ -75,11 +75,24 @@ Notifications.defaultProps = {
 
 const styles = StyleSheet.create({
   Notifications: {
-    padding: '1em',
-    border: '2px dashed red',
-    position: 'absolute',
-    top: '1.8em',
-    right: '0',
+    // padding: '1em',
+    // border: '2px dashed red',
+    // position: 'absolute',
+    // top: '1.8em',
+    // right: '0',
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'white',
+    zIndex: 1000,
+    fontSize: '20px',
+  },
+  ul: {
+    listStyleType: 'none',
+    padding: 0,
+    margin: 0,
   },
   "notification-header": {
     display: 'flex',
