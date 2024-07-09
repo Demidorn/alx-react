@@ -34,6 +34,8 @@ class App extends React.Component {
       e.preventDefault();
       alert("Logging you out");
       this.props.logOut();
+      // this.props.alert("Logging you out");
+      // this.props.logOut();
     }
   }
   componentDidMount() {

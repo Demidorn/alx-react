@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+
 import React from "react";
 import App from "./App";
 import Login from "../Login/Login";
@@ -39,7 +40,7 @@ describe("App tests", () => {
   it("does not render courselist if logged out", () => {
     const component = shallow(<App />);
 
-    component.setProps({ isLogedIn: false });
+    component.setProps({ isLoggedIn: false });
 
     expect(component.contains(<CourseList />)).toBe(false);
   });
@@ -61,6 +62,9 @@ describe("When ctrl + h is pressed", () => {
     expect(mocked).toHaveBeenCalledTimes(1);
     wrapper.unmount();
   });
+
+
+
 
   document.alert = jest.fn();
   it("checks that alert function is called", () => {
