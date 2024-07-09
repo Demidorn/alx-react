@@ -10,7 +10,14 @@ class Notifications extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      showMenuAnimation: false,
+      showNotificationList: false,
+    }
+
     this.markAsRead = this.markAsRead.bind(this);
+    this.handleMenuHover = this.handleMenuHover.bind(this);
+    this.handleNotificationClick = this.handleNotificationClick.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -21,10 +28,22 @@ class Notifications extends Component {
     console.log(`Notification ${id} has been marked as read`);
   }
 
+  handleMenuHover() {
+    this.setState({ showMenuAnimation: true});
+  }
+
+  handleNotificationClick() {
+    this.setState({ showMenuAnimation: false});
+  }
+
   render() {
+    const { showMenuAnimation } = this.state;
     return (
       <React.Fragment>
-        <div className={css(styles.menuItem)}>
+        <div 
+        className={css(styles.menuItem, showMenuAnimation && styles.menuItemHover)}
+        onMouseEnter={this.handleMenuHover}
+        onMouseLeave={() => this.setState({showMenuAnimation: false})}>
           <p>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
@@ -49,9 +68,13 @@ class Notifications extends Component {
             >
               <img src={closeBtn} alt="X" width="10px" />
             </button>
-            {this.props.listNotifications.length != 0 ? <p>Here is the list of notifications</p> : null}
+            {this.props.listNotifications.length != 0 ? (
+              <p>Here is the list of notifications</p> 
+              ): null}
             <ul  className={css(styles.ul)}>
-              {this.props.listNotifications.length == 0 ? <NotificationItem type="default" value="No new notification for now" /> : null}
+              {this.props.listNotifications.length == 0 ? (
+                <NotificationItem type="default" value="No new notification for now" />
+                ): null}
               {this.props.listNotifications.map((val, idx) => {
                 return <NotificationItem type={val.type} value={val.value} html={val.html} key={val.id} markAsRead={this.markAsRead} id={val.id} />;
               })}
@@ -73,6 +96,28 @@ Notifications.defaultProps = {
   listNotifications: [],
 };
 
+const bounceAnimation = {
+  '0%': {
+    transform: 'translateY(0px)',
+  },
+  '50%': {
+    transform: 'translateY(-5px)',
+  },
+  '100%': {
+    transform: 'translateY(5px)',
+  },
+};
+
+const opacityAnimation = {
+  '0%': {
+    opacity: 0.5,
+  },
+  '100%': {
+    opacity: 1,
+  },
+
+};
+
 const styles = StyleSheet.create({
   Notifications: {
     // padding: '1em',
@@ -85,7 +130,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
+    backgroundColor: '#fff8f8',
     zIndex: 1000,
     fontSize: '20px',
   },
@@ -111,6 +157,21 @@ const styles = StyleSheet.create({
   '[data-notification-type="urgent"]': {
     color: 'red',
   },
+  menuItem: {
+    textAlign: 'right',
+    transition: 'background-color 0.3s ease',
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: '#fff8f8',
+    },
+  },
+
+  menuItemHover: {
+    animationName: [bounceAnimation, opacityAnimation],
+    animationDuration: '0.5s, 1s',
+    animationIterationCount: '3',
+  },
+
 });
 
 export default Notifications;
