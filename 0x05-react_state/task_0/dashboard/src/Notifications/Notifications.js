@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import "./Notifications.css";
 import closeBtn from "../assets/close-btn.png";
 import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
@@ -21,7 +20,9 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.length > this.props.listNotifications.length;
+    // return nextProps.length > this.props.listNotifications.length;
+    return nextProps.displayDrawer !== this.props.displayDrawer ||
+    nextProps.listNotifications.length > this.props.listNotifications.length;
   }
 
   markAsRead(id) {
@@ -38,15 +39,18 @@ class Notifications extends Component {
 
   render() {
     const { showMenuAnimation } = this.state;
+    const { displayDrawer, handleDisplayDrawer, handleHideDrawer} = this.props;
     return (
       <React.Fragment>
         <div 
         className={css(styles.menuItem, showMenuAnimation && styles.menuItemHover)}
         onMouseEnter={this.handleMenuHover}
-        onMouseLeave={() => this.setState({showMenuAnimation: false})}>
+        onMouseLeave={() => this.setState({showMenuAnimation: false})}
+        onClick={handleHideDrawer}
+        >
           <p>Your notifications</p>
         </div>
-        {this.props.displayDrawer ? (
+        {displayDrawer && (
           <div className={css(styles.Notifications)}>
             <button
               style={{
@@ -62,9 +66,10 @@ class Notifications extends Component {
                 outline: "none",
               }}
               aria-label="Close"
-              onClick={(e) => {
-                console.log("Close button has been clicked");
-              }}
+              // onClick={(e) => {
+              //   console.log("Close button has been clicked");
+              // }}
+              onClick={handleHideDrawer}
             >
               <img src={closeBtn} alt="X" width="10px" />
             </button>
@@ -80,7 +85,7 @@ class Notifications extends Component {
               })}
             </ul>
           </div>
-        ) : null}
+        )}
       </React.Fragment>
     );
   }
@@ -120,17 +125,11 @@ const opacityAnimation = {
 
 const styles = StyleSheet.create({
   Notifications: {
-    // padding: '1em',
-    // border: '2px dashed red',
-    // position: 'absolute',
-    // top: '1.8em',
-    // right: '0',
     position: 'fixed',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    // backgroundColor: 'white',
     backgroundColor: '#fff8f8',
     zIndex: 1000,
     fontSize: '20px',
