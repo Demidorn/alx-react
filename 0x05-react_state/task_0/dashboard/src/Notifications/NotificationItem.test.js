@@ -10,6 +10,14 @@ afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
+beforeAll(() => {
+  window.alert = jest.fn();
+});
+
+afterAll(() => {
+  window.alert.mockRestore();
+});
+
 describe("rendering components", () => {
   it("renders NotificationItem component without crashing", () => {
     const wrapper = shallow(<NotificationItem />);

@@ -44,6 +44,7 @@
         "react-dom": "^17.0.2"
     },
     "jest": {
+        "testEnvironment": "jsdom",
         "setupFiles": [
             "<rootDir>/config/setupTests.js"
         ],

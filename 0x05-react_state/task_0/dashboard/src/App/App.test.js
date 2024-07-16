@@ -18,6 +18,15 @@ afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
+
+beforeAll(() => {
+  window.alert = jest.fn();
+});
+
+afterAll(() => {
+  window.alert.mockRestore();
+});
+
 describe("App tests", () => {
   it("renders without crashing", () => {
     const component = shallow(<App />);
