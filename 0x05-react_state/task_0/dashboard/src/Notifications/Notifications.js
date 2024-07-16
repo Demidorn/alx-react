@@ -39,7 +39,7 @@ class Notifications extends Component {
 
   render() {
     const { showMenuAnimation } = this.state;
-    const { displayDrawer, handleDisplayDrawer, handleHideDrawer} = this.props;
+    const { displayDrawer, handleHideDrawer} = this.props;
     return (
       <React.Fragment>
         <div 
@@ -65,11 +65,7 @@ class Notifications extends Component {
                 cursor: "pointer",
                 outline: "none",
               }}
-              aria-label="Close"
-              // onClick={(e) => {
-              //   console.log("Close button has been clicked");
-              // }}
-              onClick={handleHideDrawer}
+              aria-label="Close" onClick={handleHideDrawer}
             >
               <img src={closeBtn} alt="X" width="10px" />
             </button>

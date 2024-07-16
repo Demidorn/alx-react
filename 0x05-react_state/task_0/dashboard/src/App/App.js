@@ -71,7 +71,7 @@ class App extends React.Component {
             listNotifications={this.listNotifications}
             displayDrawer={this.state.displayDrawer}
             handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer}
+            handleHideDrawer
             />
             <Header />
           </div>
