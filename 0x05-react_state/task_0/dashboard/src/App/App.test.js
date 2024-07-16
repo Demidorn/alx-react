@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import React from "react";
 import App from "./App";
 import Login from "../Login/Login";
@@ -48,7 +47,7 @@ describe("App tests", () => {
   it("does not render courselist if logged out", () => {
     const component = shallow(<App />);
 
-    component.setProps({ isLoggedIn: false });
+    component.setProps({ isLogedIn: false });
 
     expect(component.contains(<CourseList />)).toBe(false);
   });
@@ -70,9 +69,6 @@ describe("When ctrl + h is pressed", () => {
     expect(mocked).toHaveBeenCalledTimes(1);
     wrapper.unmount();
   });
-
-
-
 
   document.alert = jest.fn();
   it("checks that alert function is called", () => {
@@ -97,4 +93,35 @@ describe("When ctrl + h is pressed", () => {
     wrapper.unmount();
   });
   document.alert.mockClear();
+});
+
+it("Has default state for displayDrawer false", () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.state().displayDrawer).toEqual(false);
+});
+
+it("displayDrawer changes to true when calling handleDisplayDrawer", () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.state().displayDrawer).toEqual(false);
+
+  const instance = wrapper.instance();
+
+  instance.handleDisplayDrawer();
+
+  expect(wrapper.state().displayDrawer).toEqual(true);
+});
+
+it("displayDrawer changes to false when calling handleHideDrawer", () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.state().displayDrawer).toEqual(false);
+
+  // const instance = wrapper.instance();
+
+  wrapper.instance().handleDisplayDrawer();
+
+  expect(wrapper.state().displayDrawer).toEqual(true);
+
+  wrapper.instance().handleHideDrawer();
+
+  expect(wrapper.state().displayDrawer).toEqual(false);
 });
