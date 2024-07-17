@@ -9,7 +9,7 @@ import BodySection from "../BodySection/BodySection";
 import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
-import { AppContext, user } from "./AppContext";
+import { AppContext, user as defaultUser } from "./AppContext";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends React.Component {
     
     this.state = {
       displayDrawer: false,
-      user: user,
+      user: defaultUser,
       logOut: this.logOut,
     };
 
@@ -77,7 +77,7 @@ class App extends React.Component {
 
   logOut() {
     this.setState({
-      user: user,
+      user: defaultUser,
     });
   }
 
@@ -106,7 +106,7 @@ class App extends React.Component {
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login />
+                <Login logIn={this.logIn} />
               </BodySectionWithMarginBottom>
             )}
             <BodySection title="News from the school">
