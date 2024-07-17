@@ -1,5 +1,4 @@
 import React from "react";
-// import "./CourseList.css";
 import CourseListRow from "./CourseListRow";
 import PropTypes from "prop-types";
 import CourseShape from "./CourseShape";
@@ -51,8 +50,8 @@ const styles = StyleSheet.create({
   },
   tr: {
     'nth-child(2)': {
-    textAlign: 'left',
-  },
+      textAlign: 'left',
+    },
   },
   
 });
