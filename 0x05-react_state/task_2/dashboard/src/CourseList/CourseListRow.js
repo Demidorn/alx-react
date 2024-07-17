@@ -5,7 +5,7 @@ import { StyleSheet, css } from "aphrodite";
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   const appliedStyle = isHeader ? css(styles.headerRow) : css(styles.defaultRow);
   return (
-    <tr style={appliedStyle}>
+    <tr className={appliedStyle}>
       {isHeader ? (
         textSecondCell === null ? (
           <th colSpan={2}  className={css(styles.th)}>
