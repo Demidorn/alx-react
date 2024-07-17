@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { StyleSheet, css } from "aphrodite";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 
 function Login(props) {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,7 +11,8 @@ function Login(props) {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     // setIsLoggedIn(true);
-    props.logIn(e.target.elements.email.value, e.target.elements.password.value);
+    // props.logIn(e.target.elements.email.value, e.target.elements.password.value);
+    props.logIn(email, password);
     // this.setState({isLoggedIn: true});
   };
 
@@ -44,14 +45,16 @@ function Login(props) {
             className={css(styles.formInput)}
             type="email"
             name="email"
-            value={email} onChange={handleChangeEmail}></input>
+            value={email}
+            onChange={handleChangeEmail}/>
           </div>
           <div className={css(styles.formGroup)}>
             <label htmlFor="password">Password:</label>
             <input className={css(styles.formInput)}
             type="password"
             name="password"
-            value={password} onChange={handleChangePassword}></input>
+            value={password}
+            onChange={handleChangePassword}></input>
           </div>
           <div className={css(styles.formGroup)}>
             <input className={css(styles.button)}
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
 });
 
 Login.PropTypes = {
-  logIn: PropTypes.func,
+  logIn: PropTypes.func.isRequired,
 };
 
 export default Login;
