@@ -26,6 +26,7 @@ class App extends React.Component {
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
 
   }
 
@@ -79,6 +80,11 @@ class App extends React.Component {
     this.setState({
       user: defaultUser,
     });
+  }
+
+  markNotificationAsRead(id) {
+    const newList = this.state.listNotifications.filter((notification) => notification.id !== id);
+    this.setState({ listNotifications: newList });
   }
 
   render() {
