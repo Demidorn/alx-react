@@ -131,3 +131,39 @@ describe("testing state of App.js", () => {
     expect(wrapper.state().displayDrawer).toBe(false);
   });
 });
+
+describe("markNotificationAsRead works as intended", () => {
+  it(`verify that markNotificationAsRead works as intended, deletes the notification with the passed id from the listNotifications array`, () => {
+    const context = {
+      user: {
+        ...user,
+      },
+      logOut: jest.fn(),
+      listNotifications: [
+        { id: 1, type: "default", value: "New course available" },
+        { id: 2, type: "urgent", value: "New resume available" },
+        { id: 3, html: { __html: jest.fn() }, type: "urgent" },
+      ],
+    };
+
+    const wrapper = mount(
+      <AppContext.Provider value={context}>
+        <App />
+      </AppContext.Provider>
+    );
+
+    const instance = wrapper.instance();
+
+    instance.markNotificationAsRead(3);
+
+    expect(wrapper.state().listNotifications).toEqual([
+      { id: 1, type: "default", value: "New course available" },
+      { id: 2, type: "urgent", value: "New resume available" },
+    ]);
+
+    expect(wrapper.state().listNotifications.length).toBe(2);
+    expect(wrapper.state().listNotifications[3]).toBe(undefined);
+
+    wrapper.unmount();
+  });
+});
