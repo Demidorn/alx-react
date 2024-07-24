@@ -3,8 +3,6 @@ import { normalize, schema } from 'normalizr';
 
 const user = new schema.Entity('users');
 
-console.log( 'users:', {'5debd764a7c57c7839d722e9': user} );
-
 const message = new schema.Entity('messages', {}, {
   idAttribute: 'guid' }
 );
@@ -22,7 +20,16 @@ export { normalized, getAllNotificationsByUser };
 
 
 function getAllNotificationsByUser(userId){
-  return notificationsData.filter((notification) => notification.author.id === userId)
-    .map((notification) => notification.context);
+  const output = [];
+  const notifications = normalized.entities.notifications;
+  const messages = normalized.entities.messages;
+
+  for (const id in notifications) {
+    if (notifications[id].author === userId) {
+      const messageId = notifications[id].context;
+      output.push(messages[messageId]);
+    }
+  }
+  return output;
 }
 
