@@ -5,11 +5,17 @@ import { StyleSheet, css } from "aphrodite";
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   // const appliedStyle = isHeader ? css(styles.headerRow) : css(styles.defaultRow);
   const [checked, setChecked] = useState(false);
+
+  const handleCheckedChange = (e) => {
+    setChecked(!checked);
+  };
+
   const headerStyle = { backgroundColor: "#deb5b545" };
   const rowStyle = { backgroundColor: "#f5f5f5ab" };
   const selected_style = isHeader ? headerStyle : rowStyle;
+
   return (
-    <tr style={selected_style} className={checked ? css(rowstyles.rowChecked) : ""} >
+    <tr style={selected_style} className={checked ? css(styles.rowChecked) : ""} >
       {isHeader ? (
         textSecondCell === null ? (
           <th colSpan={2}  className={css(rowStyle.thcenter)}>
