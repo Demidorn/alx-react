@@ -35,12 +35,12 @@ describe("tests for UI notification action creators", () => {
       type: HIDE_NOTIFICATION_DRAWER,
     });
   });
-});
 
-describe('loginRequest action', () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
+
+// describe('loginRequest action', () => {
+//   afterEach(() => {
+//     fetchMock.restore();
+//   });
 
   it('creates LOGIN and LOGIN_SUCCESS when fetching login succeeds', () => {
     fetchMock.getOnce('/dist/login-success.json', {
