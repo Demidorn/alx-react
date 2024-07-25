@@ -42,7 +42,13 @@
         "inline-source-map": "^0.6.2",
         "prop-types": "^15.8.1",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "fetch-mock": "^10.1.1",
+        "node-fetch": "^3.3.2",
+        "redux": "^5.0.1",
+        "redux-mock-store": "^1.5.4",
+        "redux-thunk": "^3.1.0"
+  
     },
     "jest": {
         "setupFiles": [
