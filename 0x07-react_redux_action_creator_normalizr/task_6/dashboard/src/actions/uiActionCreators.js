@@ -7,11 +7,16 @@ export const login = (email, password) => {
   };
 }
 
+export const boundLogin = (email, password) => dispatch(login(email, password));
+
+
 export const logout = () => {
   return {
     type: LOGOUT,
   };
 }
+
+export const boundLogout = () => dispatch({types: LOGOUT});
 
 export const displayNotificationDrawer = () => {
   return {
@@ -19,8 +24,12 @@ export const displayNotificationDrawer = () => {
   };
 }
 
+export const boundNotificationDrawer = () => dispatch(displayNotificationDrawer());
+
 export const hideNotificationDrawer = () => {
   return {
     type: HIDE_NOTIFICATION_DRAWER,
   };
 }
+
+export const boundHideNotificationDrawer = () => dispatch(hideNotificationDrawer());

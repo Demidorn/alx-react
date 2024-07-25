@@ -7,9 +7,13 @@ export const selectCourse = (index) => {
   };
 }
 
+export const boundSelectCourse = (index) => dispatch(selectCourse(index));
+
 export const unSelectCourse = (index) => {
   return {
     type: UNSELECT_COURSE,
     index: index,
   };
 }
+
+export const boundUnSelectCourse = (index) => dispatch(unSelectCourse(index));
