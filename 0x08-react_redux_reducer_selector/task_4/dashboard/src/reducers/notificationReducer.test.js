@@ -1,85 +1,90 @@
 // notificationReducer.test.js
+import { fromJS } from 'immutable';
 import notificationReducer from './notificationReducer';
-import {
-  FETCH_NOTIFICATIONS_SUCCESS,
-  MARK_AS_READ,
-  SET_TYPE_FILTER
-} from '../actions/notificationActionTypes';
+import { FETCH_NOTIFICATIONS_SUCCESS, MARK_AS_READ, SET_TYPE_FILTER } from '../actions/notificationActionTypes';
 
 describe('notificationReducer', () => {
-  // Test default state
-  it('should return the initial state', () => {
-    expect(notificationReducer(undefined, {})).toEqual({
-      filter: 'DEFAULT',
-      notifications: []
-    });
+  const initialState = fromJS({
+    filter: 'DEFAULT',
+    notifications: {},
+    notificationList: []
   });
 
-  // Test FETCH_NOTIFICATIONS_SUCCESS action
+  it('should return the initial state', () => {
+    expect(notificationReducer(undefined, {})).toEqual(initialState);
+  });
+
   it('should handle FETCH_NOTIFICATIONS_SUCCESS', () => {
     const data = [
       { id: 1, type: 'default', value: 'New course available' },
       { id: 2, type: 'urgent', value: 'New resume available' },
       { id: 3, type: 'urgent', value: 'New data available' }
     ];
-    const expectedState = {
-      filter: 'DEFAULT',
-      notifications: data.map(notification => ({
-        ...notification,
-        isRead: false
-      }))
-    };
-    expect(notificationReducer(undefined, {
+    const action = {
       type: FETCH_NOTIFICATIONS_SUCCESS,
       data
-    })).toEqual(expectedState);
+    };
+    const expectedState = fromJS({
+      filter: 'DEFAULT',
+      notifications: {
+        1: { id: 1, type: 'default', value: 'New course available', isRead: false },
+        2: { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
+        3: { id: 3, type: 'urgent', value: 'New data available', isRead: false }
+      },
+      notificationList: [1, 2, 3]
+    });
+    expect(notificationReducer(initialState, action)).toEqual(expectedState);
   });
 
-  // Test MARK_AS_READ action
   it('should handle MARK_AS_READ', () => {
-    const initialState = {
+    const state = fromJS({
       filter: 'DEFAULT',
-      notifications: [
-        { id: 1, type: 'default', value: 'New course available', isRead: false },
-        { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
-        { id: 3, type: 'urgent', value: 'New data available', isRead: false }
-      ]
-    };
-    const expectedState = {
-      filter: 'DEFAULT',
-      notifications: [
-        { id: 1, type: 'default', value: 'New course available', isRead: false },
-        { id: 2, type: 'urgent', value: 'New resume available', isRead: true },
-        { id: 3, type: 'urgent', value: 'New data available', isRead: false }
-      ]
-    };
-    expect(notificationReducer(initialState, {
+      notifications: {
+        1: { id: 1, type: 'default', value: 'New course available', isRead: false },
+        2: { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
+        3: { id: 3, type: 'urgent', value: 'New data available', isRead: false }
+      },
+      notificationList: [1, 2, 3]
+    });
+    const action = {
       type: MARK_AS_READ,
       index: 2
-    })).toEqual(expectedState);
+    };
+    const expectedState = fromJS({
+      filter: 'DEFAULT',
+      notifications: {
+        1: { id: 1, type: 'default', value: 'New course available', isRead: false },
+        2: { id: 2, type: 'urgent', value: 'New resume available', isRead: true },
+        3: { id: 3, type: 'urgent', value: 'New data available', isRead: false }
+      },
+      notificationList: [1, 2, 3]
+    });
+    expect(notificationReducer(state, action)).toEqual(expectedState);
   });
 
-  // Test SET_TYPE_FILTER action
   it('should handle SET_TYPE_FILTER', () => {
-    const initialState = {
+    const state = fromJS({
       filter: 'DEFAULT',
-      notifications: [
-        { id: 1, type: 'default', value: 'New course available', isRead: false },
-        { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
-        { id: 3, type: 'urgent', value: 'New data available', isRead: false }
-      ]
-    };
-    const expectedState = {
-      filter: 'URGENT',
-      notifications: [
-        { id: 1, type: 'default', value: 'New course available', isRead: false },
-        { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
-        { id: 3, type: 'urgent', value: 'New data available', isRead: false }
-      ]
-    };
-    expect(notificationReducer(initialState, {
+      notifications: {
+        1: { id: 1, type: 'default', value: 'New course available', isRead: false },
+        2: { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
+        3: { id: 3, type: 'urgent', value: 'New data available', isRead: false }
+      },
+      notificationList: [1, 2, 3]
+    });
+    const action = {
       type: SET_TYPE_FILTER,
       filter: 'URGENT'
-    })).toEqual(expectedState);
+    };
+    const expectedState = fromJS({
+      filter: 'URGENT',
+      notifications: {
+        1: { id: 1, type: 'default', value: 'New course available', isRead: false },
+        2: { id: 2, type: 'urgent', value: 'New resume available', isRead: false },
+        3: { id: 3, type: 'urgent', value: 'New data available', isRead: false }
+      },
+      notificationList: [1, 2, 3]
+    });
+    expect(notificationReducer(state, action)).toEqual(expectedState);
   });
 });
