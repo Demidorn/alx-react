@@ -44,4 +44,4 @@ export default function uiReducer(state = initialState, action) {
       break;
   }
   return state;
-}
+};
