@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 import { AppContext, user as defaultUser } from "./AppContext";
+import { connect } from "react-redux";
+// import { iuReducer } from "../reducers/uiReducer";
 
 class App extends React.Component {
   constructor(props) {
@@ -149,4 +151,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial, Helvetica, sans-serif',
   },
 });
-export default App;
+
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.uiReducer.isLoggedIn,
+});
+// export default App;
+export default connect(mapStateToProps, { logOut })(App);
